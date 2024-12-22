@@ -1,0 +1,62 @@
+<div class="p-4 bg-gray-50 min-h-screen">
+  <h1 class="text-2xl font-bold mb-4">Task List</h1>
+
+  <div class="mb-4">
+    <button
+      class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+      (click)="openCreateTask()"
+    >
+      Create New Task
+    </button>
+  </div>
+
+  <app-edit-task
+    *ngIf="createMode || editMode"
+    [task]="taskToEdit"
+    (save)="handleSave($event)"
+    (cancel)="closeModal()"
+  ></app-edit-task>
+
+  <div *ngIf="tasks.length; else noTasks" class="space-y-4">
+    <div *ngFor="let task of tasks" class="p-4 bg-white shadow rounded-lg border">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold" [class.line-through]="task.isCompleted">
+          {{ task.title }}
+        </h2>
+        <button
+          (click)="toggleCompletion(task)"
+          class="text-sm px-3 py-1 rounded-full"
+          [class.bg-green-100]="!task.isCompleted"
+          [class.bg-red-100]="task.isCompleted"
+        >
+          {{ task.isCompleted ? 'Mark Incomplete' : 'Mark Complete' }}
+        </button>
+      </div>
+
+      <p class="text-gray-600 text-sm mt-2">{{ task.description }}</p>
+      <div class="mt-2 text-sm text-gray-500">
+        <p>Due: {{ task.dueDate }}</p>
+        <p *ngIf="task.createdAt">Created: {{ task.createdAt }}</p>
+      </div>
+
+      <div class="flex justify-end mt-4 space-x-2">
+        <button
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          (click)="openEditTask(task)"
+        >
+          Edit
+        </button>
+        <button
+          class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          (click)="deleteTask(task.id)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noTasks>
+    <p class="text-gray-500">No tasks available. Add a new task to get started!</p>
+  </ng-template>
+</div>

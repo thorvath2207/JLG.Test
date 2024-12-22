@@ -1,0 +1,22 @@
+services:
+  backend-integration-test:
+    image: jlgtest.backend
+    build:
+      context: .
+      dockerfile: src/JLG.Test.Server/Dockerfile
+      target: integrationtest
+    entrypoint:
+        - dotnet
+        - test
+        - --results-directory=/TestResult/
+
+  backend-unit-test:
+    image: jlgtest.backend
+    build:
+      context: .
+      dockerfile: src/JLG.Test.Server/Dockerfile
+      target: unittest
+    entrypoint:
+        - dotnet
+        - test
+        - --results-directory=/TestResult/

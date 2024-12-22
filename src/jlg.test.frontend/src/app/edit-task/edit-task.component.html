@@ -1,0 +1,50 @@
+<div class="p-4 bg-gray-100 shadow rounded-lg max-w-md mx-auto">
+  <h2 class="text-xl font-bold mb-4">
+    {{ task.id ? 'Edit Task' : 'Create New Task' }}
+  </h2>
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <div class="mb-4">
+      <label for="title" class="block text-sm font-medium">Title</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="task.title"
+        name="title"
+        class="mt-1 p-2 block w-full border rounded"
+        required
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="block text-sm font-medium">Description</label>
+      <textarea
+        id="description"
+        [(ngModel)]="task.description"
+        name="description"
+        class="mt-1 p-2 block w-full border rounded"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="dueDate" class="block text-sm font-medium">Due Date</label>
+      <input
+        type="date"
+        id="dueDate"
+        [(ngModel)]="task.dueDate"
+        name="dueDate"
+        class="mt-1 p-2 block w-full border rounded"
+        required
+      />
+    </div>
+
+    <div class="flex justify-end space-x-2">
+      <button type="button" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

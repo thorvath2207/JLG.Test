@@ -1,0 +1,14 @@
+services:
+  backend:
+    image: jlgtest.backend
+    build:
+      context: .
+      dockerfile: src/JLG.Test.Server/Dockerfile
+
+  frontend:
+    image: jlgtest.frontend
+    build:
+      context: src/jlg.test.frontend/.
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
