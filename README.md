@@ -22,7 +22,7 @@ Run integration tests with docker compose
 Run unit tests with docker compose
 
 ```bash
-  docker compose -f docker-compose.test.yml up --build backend-integration-test
+  docker compose -f docker-compose.test.yml up --build backend-unit-test
 ```
 
 Build and start the application with docker compose

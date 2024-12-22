@@ -1,4 +1,4 @@
-FROM node:latest as build
+FROM node:latest AS build
 WORKDIR /usr/local/app
 COPY package*.json /usr/local/app/
 RUN npm install

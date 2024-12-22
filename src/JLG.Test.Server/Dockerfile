@@ -15,7 +15,7 @@ RUN dotnet build "/build/src/JLG.Test.Server/JLG.Test.Server.csproj" -c $BUILD_C
 FROM build AS integrationtest
 WORKDIR "/build/test/JLG.Test.Server.IntegrationTests/"
 
-FROM build as unittest
+FROM build AS unittest
 WORKDIR "/build/test/JLG.Test.Server.UnitTests/"
 
 FROM build AS publish
